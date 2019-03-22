@@ -3,7 +3,7 @@ Mój projekt będzie oparty na technologii Unity.
 Będzie to gra platformowa utrzymana w stylu 2D.
 Spróbuję zrobić jak najwierniejszą kopię gry "Ori and blind forest".
 
-Gra ostatecznie trafi na telefon i komputer. Mechanika gry będzie tworzona tak aby dało się w nią grać na telefonie.
+Gra ostatecznie trafi na komputer (i jesli starczy czasu na telefon).
 
 Mechanika gry:
 -Gracz będzie się poruszać jedną postacią. Będzie nią poruszać za pomocą: "joysticka" i przycisku do skoku-na telefonie, a na 
@@ -22,7 +22,7 @@ Główne założenia gry:
 
 
 Dodatkowe umiejętności:
-- możliwość krótkiego sprintu
+- możliwość krótkiego sprintu(ang. "dash"),
 - podwójny skok,
 - więcej życia,
  
