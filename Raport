@@ -1,0 +1,14 @@
+Aktualny projekt, który rozwijam znajduje się w folderze Project_Unity_S4.
+W folderze SAcripts znajdują się skrypty które testowałem.
+
+Skupiłem się na sposobie poruszania postacią. Przetestowałem kilka rozwiązań i ostatecznie udało mi się stworzyć
+skrypt dzięki któremu moja postać porusza się bardzo podobnie do postaci z gry na której się wzoruje.
+
+Usprawniłem mechanikę wspinania się po ścianie.
+
+Stworzyłem skrypt dzięki któremu gdy postać gracza stoi na ruszającej się platformie, postać porusza się wraz z platformą.
+
+Rzeczy do zrobienia:
+- stworzyć system zdrowia;
+- dodać przeciwników/pułapki;
+- zrobić jakieś animacje postaci;
