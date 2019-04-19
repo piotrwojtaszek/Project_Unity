@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-
-    protected Rigidbody2D rb2d;
-    protected float moveInput;
+    [HideInInspector]
+    public Rigidbody2D rb2d;
+    [HideInInspector]
+    public float moveInput;
     public float speedForce = 10f;
     public float maxSpeed;
     public Vector2 jumpForce;
     public Vector2 jumpForceWall;
-    public float groundSlide;
+   // public float groundSlide;
 
     public bool facingRight;
     public bool isInAir;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour {
     public LayerMask wallMask;
     public bool wallSliding;
 
+    [HideInInspector]
+    public bool canJump;
     
     // Use this for initialization
 
@@ -76,7 +79,7 @@ public class PlayerController : MonoBehaviour {
         {
             if(rb2d.velocity.x > maxSpeed / 4f)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x * 0.99f, rb2d.velocity.y);
+                rb2d.velocity = new Vector2(rb2d.velocity.x * 0.98f, rb2d.velocity.y);
             }
             else if(rb2d.velocity.x <= maxSpeed / 4f)
             {
@@ -84,9 +87,11 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        
+
         if (isGrounded)
         {
-            GroundMoveTweek(moveInput);
+          // GroundMoveTweek(moveInput);
         }
 
         if(!isWalled && !isGrounded)
@@ -151,20 +156,20 @@ public class PlayerController : MonoBehaviour {
     {
         if ((vel > 0 && moveInput> 0) || (vel == 0 && moveInput > 0))
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
 
             facingRight = true;
         }
         else if ((vel < 0 && moveInput < 0) ||( vel == 0 && moveInput < 0))
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
 
             facingRight = false;
         }
         
     }
 
-    void GroundMoveTweek(float moveInput)
+    /*void GroundMoveTweek(float moveInput)
     {
         if (moveInput == 0)
         {
@@ -186,7 +191,7 @@ public class PlayerController : MonoBehaviour {
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             }
         }
-    }
+    }*/
 
 
     [System.Serializable]
