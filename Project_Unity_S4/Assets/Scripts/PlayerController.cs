@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Skrypt odpowiedzialny za własciwosci gracza
 public class PlayerController : MonoBehaviour {
-
+    //TO DO - za duzo referencji, zrobic strukture lub klase na nie
     [HideInInspector]
     public Rigidbody2D rb2d;
     [HideInInspector]
@@ -35,20 +35,21 @@ public class PlayerController : MonoBehaviour {
     public bool canJump;                                // bedzie potrzebne
     float timeOfWall;
     // Use this for initialization
-
+    float yVelocity = 0.0f;
     void OnEnable()
     {
         rb2d = GetComponent<Rigidbody2D>();
+
     }
 
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        CanJump();
+    // ####################################################
+    // Update is called once per frame
+    void Update () {
+        
+       
 
         moveInput = Input.GetAxis("Horizontal");                                                // poruszanie postacia
                                                                                                 //kiedy gracz moze skakac
@@ -87,13 +88,20 @@ public class PlayerController : MonoBehaviour {
             {
                 if (isWalled)
                 {
+
                     HandleWallSliding();                                                            //slizganie sie po scianie
                 }
+            }
+            if(isWalled && moveInput == 0)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlidingSpeed);
+
+                wallSliding = true;
             }
         }
 
         if (isInAir && moveInput==0)                                                                // spowalnianie gracza w locie
-        {
+        {/*
             if(rb2d.velocity.x > maxSpeed / 4f)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x * 0.98f, rb2d.velocity.y);
@@ -101,7 +109,9 @@ public class PlayerController : MonoBehaviour {
             else if(rb2d.velocity.x <= maxSpeed / 4f)
             {
                 rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
-            }
+            }*/
+            float newVelocity = Mathf.SmoothDamp(rb2d.velocity.x, 0f, ref yVelocity, 0.3f);
+            rb2d.velocity = new Vector2(newVelocity, rb2d.velocity.y);
         }
 
 
@@ -119,17 +129,20 @@ public class PlayerController : MonoBehaviour {
 
         }
 
-
         if(!isWalled || isGrounded)
         {
             wallSliding = false;
         }
+        CanJump();
         WallLeap();
+        
+
     }
+
+    // ####################################################
+
     void FixedUpdate()
     {
-       
-
         isGrounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, groundMask);       // co uznajemy za ziemie
 
         FlipX(rb2d.velocity.x, moveInput);                                                                  //obrot postaci
@@ -145,7 +158,7 @@ public class PlayerController : MonoBehaviour {
             rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
         }
     }
-
+    // ####################################################
     void HandleWallSliding()                                                                                // metoda odpowiedzialna za zeslizgiwanie sie gracza po scianei
     {
         rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlidingSpeed);
@@ -165,8 +178,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    
 
+    // ####################################################
     void FlipX(float vel, float moveInput)                                                                  // obracanie gracza w kierunku ruchu i nadawanie wartosci
     {                                                                                                       // zmiennej facingRight ktora podpowiada w ktora strone jest obrocony gracz
         if ((vel >= 0 && moveInput> 0) || (vel == 0 && moveInput > 0))
@@ -183,10 +196,14 @@ public class PlayerController : MonoBehaviour {
         }
         
     }
-
+    // ####################################################
     void CanJump()
     {
-        if (isInAir)
+        if (isInAir && timeOfWall <= 0)
+        {
+            canJump = false;
+        }
+        if (Input.GetButtonDown("Jump"))
         {
             canJump = false;
         }
@@ -202,7 +219,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
-
+    // ####################################################
     void WallLeap()
     {
         if (isGrounded)
@@ -213,17 +230,51 @@ public class PlayerController : MonoBehaviour {
         {
             if (isWalled)
             {
-                timeOfWall = 5f;
+                timeOfWall = 1f;
             }
-            else if (!isWalled)
+            else if (!isWalled && timeOfWall >= -0.1)
             {
-                Debug.Log(timeOfWall);
+                //Debug.Log(timeOfWall);
                 timeOfWall = timeOfWall - Time.deltaTime;
             }
         }
-        
-    }
 
+        if (canJump)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (!isGrounded && !isInAir)
+                {
+                    if (moveInput == 0 )
+                    {
+                        Debug.Log("leapJump input 0");
+                        if (facingRight)
+                        {
+                            rb2d.AddForce(new Vector2(-3, 3) * jumpForceWall);
+                        }
+                        else if (!facingRight)
+                        {
+                            rb2d.AddForce(new Vector2(3, 3) * jumpForceWall);
+                        }
+                    }
+                }
+                else if (!isWalled && !isGrounded)
+                {
+                    
+                    Debug.Log("dzialas");
+                    if (facingRight)
+                    {
+                        rb2d.AddForce(new Vector2(3, 3) * jumpForceWall);
+                    }
+                    else if (!facingRight)
+                    {
+                        rb2d.AddForce(new Vector2(-3, 3) * jumpForceWall);
+                    }
+                }
+            } 
+        }
+    }
+    // ####################################################
     [System.Serializable]
     public class PlayerStats                                    // ZYCIE GRACZA
     {
