@@ -29,10 +29,11 @@ public class PlayerController : MonoBehaviour {
     private bool isWalled;
     public LayerMask wallMask;
     public bool wallSliding;                            // czy sie slizga
+    public float wallSlidingSpeed;
 
-    [HideInInspector]
-    public bool canJump;                                // bedzie potrzebne
     
+    public bool canJump;                                // bedzie potrzebne
+    float timeOfWall;
     // Use this for initialization
 
     void OnEnable()
@@ -46,6 +47,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        CanJump();
+
         moveInput = Input.GetAxis("Horizontal");                                                // poruszanie postacia
                                                                                                 //kiedy gracz moze skakac
         if (Input.GetButtonDown("Jump") && !wallSliding)
@@ -61,6 +65,18 @@ public class PlayerController : MonoBehaviour {
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
             }
+        }
+
+        if (isGrounded)
+        {
+            if (moveInput == 0)
+            {
+                rb2d.drag = 2;
+            }
+        }
+        else
+        {
+            rb2d.drag = 0;
         }
                                                                                                     //detekcja kolizji ze sciana
         if (!isGrounded)
@@ -88,12 +104,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        
-
-        if (isGrounded)
-        {
-          // GroundMoveTweek(moveInput);
-        }
 
         if(!isWalled && !isGrounded)                                                
         {
@@ -104,13 +114,17 @@ public class PlayerController : MonoBehaviour {
             isInAir = false;
         }
 
+        if (isWalled)
+        {
+
+        }
 
 
         if(!isWalled || isGrounded)
         {
             wallSliding = false;
         }
-        
+        WallLeap();
     }
     void FixedUpdate()
     {
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour {
 
     void HandleWallSliding()                                                                                // metoda odpowiedzialna za zeslizgiwanie sie gracza po scianei
     {
-        rb2d.velocity = new Vector2(rb2d.velocity.x, -0.5f);
+        rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlidingSpeed);
 
         wallSliding = true;
 
@@ -155,13 +169,13 @@ public class PlayerController : MonoBehaviour {
 
     void FlipX(float vel, float moveInput)                                                                  // obracanie gracza w kierunku ruchu i nadawanie wartosci
     {                                                                                                       // zmiennej facingRight ktora podpowiada w ktora strone jest obrocony gracz
-        if ((vel > 0 && moveInput> 0) || (vel == 0 && moveInput > 0))
+        if ((vel >= 0 && moveInput> 0) || (vel == 0 && moveInput > 0))
         {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
 
             facingRight = true;
         }
-        else if ((vel < 0 && moveInput < 0) ||( vel == 0 && moveInput < 0))
+        else if ((vel <= 0 && moveInput < 0) || ( vel == 0 && moveInput < 0))
         {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
 
@@ -170,30 +184,45 @@ public class PlayerController : MonoBehaviour {
         
     }
 
-    /*void GroundMoveTweek(float moveInput)                                 // bezuzyteczne
+    void CanJump()
     {
-        if (moveInput == 0)
+        if (isInAir)
         {
-            if (rb2d.velocity.x > 1f)
+            canJump = false;
+        }
+        if (!isInAir)
+        {
+            if (isGrounded)
             {
-                rb2d.AddForce(Vector2.right * -groundSlide);
+                canJump = true;
             }
-            else if (rb2d.velocity.x < -1f)
+            else if (isWalled && !isGrounded)
             {
-                rb2d.AddForce(Vector2.right * groundSlide);
-            }
-
-            if(rb2d.velocity.x < 1f && rb2d.velocity.x > 0f)
-            {
-                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-            }
-            else if (rb2d.velocity.x > -1f && rb2d.velocity.x < 0f)
-            {
-                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                canJump = true;
             }
         }
-    }*/
+    }
 
+    void WallLeap()
+    {
+        if (isGrounded)
+        {
+            timeOfWall = 0f;
+        }
+        else if (!isGrounded)
+        {
+            if (isWalled)
+            {
+                timeOfWall = 5f;
+            }
+            else if (!isWalled)
+            {
+                Debug.Log(timeOfWall);
+                timeOfWall = timeOfWall - Time.deltaTime;
+            }
+        }
+        
+    }
 
     [System.Serializable]
     public class PlayerStats                                    // ZYCIE GRACZA
