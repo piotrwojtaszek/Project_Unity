@@ -19,6 +19,7 @@ public class CameraFollow : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
@@ -54,6 +55,10 @@ public class CameraFollow : MonoBehaviour
             //linijki odpowiedzlane za plynne przejscie kamery z jednej pozycji do drugiej
             Vector3 destination = transform.position + offset + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+        }else if (!target)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
 
     }

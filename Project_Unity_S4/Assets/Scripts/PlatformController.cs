@@ -22,7 +22,7 @@ public class PlatformController : MonoBehaviour {
             //mało to eleganckie ale dziala
             
             velocity = rb.velocity;
-            Vector2 player = collider.GetComponent<PlayerController>().rb2d.velocity = new Vector2( velocity.x, collider.GetComponent<PlayerController>().rb2d.velocity.y);
+            collider.GetComponent<PlayerController>().rb2d.velocity = new Vector2( velocity.x, collider.GetComponent<PlayerController>().rb2d.velocity.y);
 
         }
     }

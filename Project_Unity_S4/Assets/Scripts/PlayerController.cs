@@ -94,22 +94,14 @@ public class PlayerController : MonoBehaviour {
             }
             if(isWalled && moveInput == 0)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlidingSpeed);
+                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlidingSpeed * 4);
 
                 wallSliding = true;
             }
         }
 
         if (isInAir && moveInput==0)                                                                // spowalnianie gracza w locie
-        {/*
-            if(rb2d.velocity.x > maxSpeed / 4f)
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x * 0.98f, rb2d.velocity.y);
-            }
-            else if(rb2d.velocity.x <= maxSpeed / 4f)
-            {
-                rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
-            }*/
+        {
             float newVelocity = Mathf.SmoothDamp(rb2d.velocity.x, 0f, ref yVelocity, 0.3f);
             rb2d.velocity = new Vector2(newVelocity, rb2d.velocity.y);
         }
@@ -275,6 +267,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
     // ####################################################
+    /*
     [System.Serializable]
     public class PlayerStats                                    // ZYCIE GRACZA
     {
@@ -284,4 +277,5 @@ public class PlayerController : MonoBehaviour {
 
     public PlayerStats playerStats = new PlayerStats();
     //koniec
+    */
 }
