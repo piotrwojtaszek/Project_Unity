@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public Transform groundCheck1;                      // potrzebne to do detekcji kolizji z ziemia
     public Transform groundCheck2;
     public LayerMask groundMask;
-    private bool isGrounded;
+    public bool isGrounded;
 
     public Transform wallCheck;                         // potrzebne w detekcji kolizji ze sciana
     public float wallCheckRadius;
