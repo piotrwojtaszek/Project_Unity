@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoDamage : MonoBehaviour
 {
-
+    
     // Use this for initialization
     void Start()
     {
@@ -17,5 +17,8 @@ public class DoDamage : MonoBehaviour
 
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
 
+    }
 }

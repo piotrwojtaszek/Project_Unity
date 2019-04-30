@@ -6,13 +6,17 @@ public class GameMaster : MonoBehaviour {
 
     private GameMaster gm;
     public Transform playerPrefab;
-
-	// Use this for initialization
-	void Start () {
+    public Transform spawnPoint;
+    
+    // Use this for initialization
+    void Start () {
         if (gm == null)
         {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
+
+        
+        RespawnPlayer();
 
     }
 	
@@ -20,4 +24,18 @@ public class GameMaster : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    static void KillPlayer(Player player)
+    {
+        Destroy(player.gameObject);
+    }
+
+    public void RespawnPlayer()
+    {
+        Transform player = (Transform)Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        CameraFollow cameraFolow = Camera.main.GetComponent<CameraFollow>();
+        cameraFolow.target = player;
+
+
+    }
 }

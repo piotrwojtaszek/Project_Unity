@@ -7,7 +7,6 @@ public class Player : MonoBehaviour {
     private Animator animator;
     private PlayerController playerController;
 
-    public float timeFromGrounded;
 	// Use this for initialization
 	void Start () {
         playerStats.Health = playerStats.maxHealth;
@@ -23,33 +22,11 @@ public class Player : MonoBehaviour {
 
 
 
-        if (playerController.isGrounded )
-        {
-                timeFromGrounded = 0;  
-        }else if (playerController.isInAir)
-        {
-            timeFromGrounded += Time.deltaTime;
-        }
+        animator.SetBool("IsInAir", playerController.isInAir);
 
-        if (playerController.isInAir )
-        {
-            if(timeFromGrounded > 0.2)
-            animator.SetBool("IsInAir", true);
-            
-        }else if (playerController.isGrounded)
-        {
-            animator.SetBool("IsInAir", false);
-        }
 
-        if (playerController.wallSliding)
-        {
-            timeFromGrounded = 0;
-            animator.SetBool("IsSliding", true);
-        }
-        else
-        {
-            animator.SetBool("IsSliding", false);
-        }
+        animator.SetBool("IsSliding", playerController.wallSliding);
+        animator.SetBool("IsGrounded", playerController.isGrounded);
     }
 
     [System.Serializable]
