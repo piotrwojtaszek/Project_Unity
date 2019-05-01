@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour {
                 {
                     if (moveInput == 0 )
                     {
-                        Debug.Log("leapJump input 0");
+                       // Debug.Log("leapJump input 0");
                         if (facingRight)
                         {
                             rb2d.AddForce(new Vector2(-3, 3) * jumpForceWall);
@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour {
                 else if (!isWalled && !isGrounded)
                 {
                     
-                    Debug.Log("dzialas");
+                   // Debug.Log("dzialas");
                     if (facingRight)
                     {
                         rb2d.AddForce(new Vector2(3, 3) * jumpForceWall);
@@ -266,16 +266,4 @@ public class PlayerController : MonoBehaviour {
             } 
         }
     }
-    // ####################################################
-    /*
-    [System.Serializable]
-    public class PlayerStats                                    // ZYCIE GRACZA
-    {
-        public int Health = 100;
-    }
-
-
-    public PlayerStats playerStats = new PlayerStats();
-    //koniec
-    */
 }

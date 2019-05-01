@@ -4,7 +4,7 @@ using UnityEngine;
 //nadawanie postaci gracza takiej samej predkosci co platforma
 public class PlatformController : MonoBehaviour {
     //znalezc inne rozwiazanie bo to jest tylko tymczsowe
-
+    // pomysl na roziwazanie -> postac gracza na trigger zostaje dzieckiem platformy ?
     Rigidbody2D rb;
     Vector2 velocity;
     

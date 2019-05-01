@@ -6,27 +6,40 @@ public class Player : MonoBehaviour {
 
     private Animator animator;
     private PlayerController playerController;
-
-	// Use this for initialization
-	void Start () {
+    
+    private int oldHealth;
+    // Use this for initialization
+    void Start () {
         playerStats.Health = playerStats.maxHealth;
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
+        oldHealth = playerStats.Health;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
         
         animator.SetFloat("Speed",Mathf.Abs( playerController.rb2d.velocity.x));
 
-
-
         animator.SetBool("IsInAir", playerController.isInAir);
-
 
         animator.SetBool("IsSliding", playerController.wallSliding);
         animator.SetBool("IsGrounded", playerController.isGrounded);
+
+        if (playerStats.Health <= 0)
+        {
+            GameMaster.KillPlayer(this);
+        }
+
+        
+        if (playerStats.Health < oldHealth)
+        {
+            GameMaster.ColorOnDamage(this);
+        }
+        oldHealth = playerStats.Health;
+
+
+
     }
 
     [System.Serializable]
