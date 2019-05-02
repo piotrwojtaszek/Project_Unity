@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour {
 
+    // TO DO -> gdy gracz doznaje obrazen zadziala na niego slila (bo sie blokuje pod skoczkiem :( )
+
     private static GameMaster gm;
     public Transform playerPrefab;
     public Transform spawnPoint;
