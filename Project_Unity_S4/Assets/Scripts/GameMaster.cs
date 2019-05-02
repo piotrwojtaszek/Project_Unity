@@ -16,16 +16,8 @@ public class GameMaster : MonoBehaviour {
         {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
-
-        
         RespawnPlayer();
-
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public static void KillPlayer(Player player)
     {
@@ -41,7 +33,7 @@ public class GameMaster : MonoBehaviour {
 
     public IEnumerator RespawnPlayerCo()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0f);
         Transform player = (Transform)Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         CameraFollow cameraFolow = Camera.main.GetComponent<CameraFollow>();
         cameraFolow.target = player;
@@ -65,7 +57,7 @@ public class GameMaster : MonoBehaviour {
         }
         catch (MissingReferenceException)
         {
-            Debug.Log("jest okej1");
+            //Debug.Log("jest okej1");
         }
         yield return new WaitForSeconds(.2f);
         try
@@ -74,8 +66,22 @@ public class GameMaster : MonoBehaviour {
         }
         catch (MissingReferenceException)
         {
-            Debug.Log("jest okej2");
-        }
+            //Debug.Log("jest okej2");
+        }                                                               //obsluga wyjatkow, probowal sie dostac do obiektu, a on juz byl zniszoczny(gra sie nei wywala ale po co miec te bledy)
 
     }
+
+    public static void HurtPlayer(Collider2D collider,int damage)           // po co za kazdym razem to pisac skoro mozna zrobic z tego metode :) 
+    {
+        if (collider.tag == "Player")
+        {
+            Player player = collider.GetComponent<Player>();
+            Debug.Log(player.playerStats.Health);
+            player.playerStats.Health -= damage;
+            Debug.Log(player.playerStats.Health);
+
+        }
+    }
+
+    
 }

@@ -26,18 +26,20 @@ public class Player : MonoBehaviour {
         animator.SetBool("IsSliding", playerController.wallSliding);
         animator.SetBool("IsGrounded", playerController.isGrounded);
 
+
+
         if (playerStats.Health <= 0)
         {
             GameMaster.KillPlayer(this);
         }
 
-        
+        //genialna funkcja ktora w przypadku otrzymania JAKICHKOLWIEK obrazen wywołuje metode z GameMastera
         if (playerStats.Health < oldHealth)
         {
             GameMaster.ColorOnDamage(this);
         }
         oldHealth = playerStats.Health;
-
+        //###################
 
 
     }

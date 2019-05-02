@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 70126115556607156}
   - component: {fileID: 212023833661951796}
   - component: {fileID: 95896082149564352}
+  - component: {fileID: 114450668203818722}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -200,8 +201,8 @@ MonoBehaviour:
   moveInput: 0
   speedForce: 50
   maxSpeed: 10
-  jumpForce: {x: 0, y: 500}
-  jumpForceWall: {x: 430, y: 320}
+  jumpForce: {x: 0, y: 450}
+  jumpForceWall: {x: 430, y: 300}
   facingRight: 0
   isInAir: 0
   groundCheck1: {fileID: 4416020535287020}
@@ -218,6 +219,17 @@ MonoBehaviour:
   wallSliding: 0
   wallSlidingSpeed: 2
   canJump: 0
+--- !u!114 &114450668203818722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992203632013418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76853c390e17f1a42aad83d006aeaf3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114830938382765362
 MonoBehaviour:
   m_ObjectHideFlags: 1
