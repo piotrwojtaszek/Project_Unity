@@ -161,11 +161,12 @@ public class PlayerController : MonoBehaviour {
         {
             if (facingRight)
             {
-                rb2d.AddForce(new Vector2(-1, 3) * jumpForceWall);
+                rb2d.AddForce(new Vector2(-1, 2) * jumpForceWall);
             }
             else
             {
-                rb2d.AddForce(new Vector2(1, 3) * jumpForceWall);
+                rb2d.AddForce(new Vector2(1, 2) * jumpForceWall);
+
             }
         }
     }

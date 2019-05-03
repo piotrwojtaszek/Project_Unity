@@ -64,12 +64,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4941864184056200}
-  - component: {fileID: 114830938382765362}
-  - component: {fileID: 114429526909144924}
   - component: {fileID: 50192396891293498}
   - component: {fileID: 70126115556607156}
   - component: {fileID: 212023833661951796}
   - component: {fileID: 95896082149564352}
+  - component: {fileID: 114429526909144924}
+  - component: {fileID: 114830938382765362}
   - component: {fileID: 114450668203818722}
   m_Layer: 0
   m_Name: Player 1
@@ -200,9 +200,9 @@ MonoBehaviour:
   rb2d: {fileID: 0}
   moveInput: 0
   speedForce: 50
-  maxSpeed: 10
-  jumpForce: {x: 0, y: 450}
-  jumpForceWall: {x: 430, y: 300}
+  maxSpeed: 11
+  jumpForce: {x: 0, y: 500}
+  jumpForceWall: {x: 500, y: 330}
   facingRight: 0
   isInAir: 0
   groundCheck1: {fileID: 4416020535287020}

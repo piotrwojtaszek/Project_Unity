@@ -8,6 +8,7 @@ public class GameMaster : MonoBehaviour {
 
     private static GameMaster gm;
     public Transform playerPrefab;
+    public Transform cubePrefab;
     public Transform spawnPoint;
     private IEnumerator coroutine;
 
@@ -21,12 +22,15 @@ public class GameMaster : MonoBehaviour {
         RespawnPlayer();
     }
 
-    public static void KillPlayer(Player player)
+    public static void KillPlayer(Player player, GameObject cuteCube)
     {
-        
         gm.RespawnPlayer();
         Destroy(player.gameObject);
+        Destroy(cuteCube.gameObject);
     }
+
+
+
 
     public void RespawnPlayer()
     {
@@ -37,6 +41,7 @@ public class GameMaster : MonoBehaviour {
     {
         yield return new WaitForSeconds(0f);
         Transform player = (Transform)Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        Transform cube = (Transform)Instantiate(cubePrefab, spawnPoint.position, spawnPoint.rotation);
         CameraFollow cameraFolow = Camera.main.GetComponent<CameraFollow>();
         cameraFolow.target = player;
     }
@@ -80,7 +85,7 @@ public class GameMaster : MonoBehaviour {
             Player player = collider.GetComponent<Player>();
             Debug.Log(player.playerStats.Health);
             player.playerStats.Health -= damage;
-            Debug.Log(player.playerStats.Health);
+            
 
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enamy : MonoBehaviour {
 
     // TO DO -> musi dostac detekcje ziemi, dodac do if(isGrounded ) moze skakac
-
+    
     
     public float maxRange;
     public float attackRate;
@@ -14,6 +14,7 @@ public class Enamy : MonoBehaviour {
     public Transform homePosition;
     public float maxDistanceFromHome;
     public float returnSpeed;
+    
 
 
     Rigidbody2D rb2d;
@@ -31,10 +32,17 @@ public class Enamy : MonoBehaviour {
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         oldGravityScale = rb2d.gravityScale;
+        enemyStats.Health = enemyStats.maxHealth;
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(enemyStats.Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerRb2d = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         heading = transform.position - player.position;
@@ -68,7 +76,7 @@ public class Enamy : MonoBehaviour {
              
             if (rb2d.velocity.y <= 0.5f)
             {
-                rb2d.gravityScale = 4;
+                rb2d.gravityScale = 6;
             }
             else
             {
@@ -98,7 +106,7 @@ public class Enamy : MonoBehaviour {
                            canAttack = false;
                         yield return new WaitForSeconds(attackRate);
 
-                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 15f);
+                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 18f);
 
 
                         isCourotinePlay = false;
@@ -109,6 +117,14 @@ public class Enamy : MonoBehaviour {
         }
         
     }
+    [System.Serializable]
+    public class EnemyStats                                    // ZYCIE Przeciwnika
+    {
+        public int maxHealth = 100;
+        public int Health;
+    }
+
+    public EnemyStats enemyStats = new EnemyStats();
 
     void OnDrawGizmos()
     {

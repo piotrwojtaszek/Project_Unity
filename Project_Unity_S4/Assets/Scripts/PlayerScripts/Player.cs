@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    private GameObject cuteCube;
     private Animator animator;
     private PlayerController playerController;
-    
     private int oldHealth;
     // Use this for initialization
     void Start () {
+        cuteCube = GameObject.FindGameObjectWithTag("CuteCube");
+
         playerStats.Health = playerStats.maxHealth;
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour {
 
         if (playerStats.Health <= 0)
         {
-            GameMaster.KillPlayer(this);
+            GameMaster.KillPlayer(this, cuteCube);
         }
 
         //genialna funkcja ktora w przypadku otrzymania JAKICHKOLWIEK obrazen wywołuje metode z GameMastera
@@ -42,6 +44,11 @@ public class Player : MonoBehaviour {
         //###################
 
 
+        // zabezbieczenie na wypadek przeniknięcia przez podłoże
+        if(transform.position.y < -100)
+        {
+            GameMaster.KillPlayer(this, cuteCube);
+        }
     }
 
     [System.Serializable]

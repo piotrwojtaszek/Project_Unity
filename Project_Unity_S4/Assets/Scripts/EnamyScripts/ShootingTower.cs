@@ -37,7 +37,28 @@ public class ShootingTower : MonoBehaviour {
             yield return new WaitForSeconds(fireRate);
             GameObject missleClone = Instantiate(misslePrefab, transform.position, transform.rotation);
             Rigidbody2D rb2d = missleClone.GetComponent<Rigidbody2D>();
-            rb2d.velocity = -(heading/distance) * speedOfMissle ;
+
+            if(distance > maxRange/2)
+            {
+                rb2d.velocity = -(heading / distance) * 1.1f * speedOfMissle;
+                //Debug.Log(heading.y);
+            }
+            else if (distance <= maxRange / 2 && distance >= maxRange / 4)
+            {
+                rb2d.velocity = -(heading / distance) * 0.6f * speedOfMissle;
+                //Debug.Log("mniej ni polowa");
+            }
+            else if(distance <= maxRange / 4)
+            {
+                //Debug.Log("mniej ni 1/4");
+                rb2d.velocity = -(heading / distance) * 0.4f * speedOfMissle;
+            }
+
+            if (heading.y > 3f)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y + heading.y * distance/maxRange / 2);
+            }
+
             canShoot = true;
             
         }
