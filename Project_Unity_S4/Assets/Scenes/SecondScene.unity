@@ -293,15 +293,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRange: 8
-  attackRate: 1.5
+  attackRate: 1
   groundCheck1: {fileID: 512424800}
   groundCheck2: {fileID: 1637298719}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
   homePosition: {fileID: 423359590}
-  maxDistanceFromHome: 10
-  returnSpeed: 4
+  maxDistanceFromHome: 15
+  returnSpeed: 9
 --- !u!50 &1199292739
 Rigidbody2D:
   serializedVersion: 4
@@ -396,7 +396,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1199292737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.55, y: -3.23, z: 0.34375}
+  m_LocalPosition: {x: 9.49, y: -3.23, z: 0.34375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 512424800}

@@ -19,6 +19,7 @@ public class Enamy : MonoBehaviour {
     Rigidbody2D rb2d;
     private float distanceFromHome;
     private Transform player;
+    private Rigidbody2D playerRb2d;
     private Vector2 heading;
     private float distance;
     private float oldGravityScale;
@@ -35,6 +36,7 @@ public class Enamy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerRb2d = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         heading = transform.position - player.position;
         distance = heading.x;
         isGrounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, groundMask);
@@ -48,14 +50,17 @@ public class Enamy : MonoBehaviour {
         {
             StartCoroutine("Attack");
         }
-        else if(!isCourotinePlay && Mathf.Abs(distanceFromHome) > 2f)
+        if(!isCourotinePlay)
         {
+            
             if (isGrounded)
             {
+                if(distanceFromHome>= maxDistanceFromHome/4)
                 transform.Translate(Vector2.right * -Mathf.Sign(vectorBeetwenHome.x) * returnSpeed * Time.deltaTime);
             }
             
         }
+       
         
 
         if (!isGrounded)
@@ -73,7 +78,7 @@ public class Enamy : MonoBehaviour {
 
             transform.Translate(Vector2.right *- heading*2 * Time.deltaTime);
         }
-        Debug.Log(distanceFromHome);
+       
 
 
     }
@@ -93,7 +98,7 @@ public class Enamy : MonoBehaviour {
                            canAttack = false;
                         yield return new WaitForSeconds(attackRate);
 
-                        rb2d.velocity = new Vector2(rb2d.velocity.x, 15f);
+                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 15f);
 
 
                         isCourotinePlay = false;
@@ -115,5 +120,8 @@ public class Enamy : MonoBehaviour {
         }
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(homePosition.position, maxDistanceFromHome);
     }
 }
