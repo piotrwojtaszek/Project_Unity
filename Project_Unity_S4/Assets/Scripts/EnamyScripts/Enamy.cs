@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enamy : MonoBehaviour {
+public class Enamy : MonoBehaviour
+{
 
     // TO DO -> musi dostac detekcje ziemi, dodac do if(isGrounded ) moze skakac
-    
-    
+
+
     public float maxRange;
     public float attackRate;
     public Transform groundCheck1, groundCheck2;
@@ -14,7 +15,7 @@ public class Enamy : MonoBehaviour {
     public Transform homePosition;
     public float maxDistanceFromHome;
     public float returnSpeed;
-    
+
 
 
     Rigidbody2D rb2d;
@@ -27,18 +28,22 @@ public class Enamy : MonoBehaviour {
     private bool isCourotinePlay;
     private bool isGrounded;
     private bool canAttack = true;
+    public EnemyStats enemyStats;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         oldGravityScale = rb2d.gravityScale;
+        enemyStats = GetComponent<EnemyStats>();
         enemyStats.Health = enemyStats.maxHealth;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if(enemyStats.Health <= 0)
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (enemyStats.Health <= 0)
         {
             Destroy(this.gameObject);
         }
@@ -58,22 +63,22 @@ public class Enamy : MonoBehaviour {
         {
             StartCoroutine("Attack");
         }
-        if(!isCourotinePlay)
+        if (!isCourotinePlay)
         {
-            
+
             if (isGrounded)
             {
-                if(distanceFromHome>= maxDistanceFromHome/4)
-                transform.Translate(Vector2.right * -Mathf.Sign(vectorBeetwenHome.x) * returnSpeed * Time.deltaTime);
+                if (distanceFromHome >= maxDistanceFromHome / 4)
+                    transform.Translate(Vector2.right * -Mathf.Sign(vectorBeetwenHome.x) * returnSpeed * Time.deltaTime);
             }
-            
+
         }
-       
-        
+
+
 
         if (!isGrounded)
         {
-             
+
             if (rb2d.velocity.y <= 0.5f)
             {
                 rb2d.gravityScale = 6;
@@ -82,18 +87,18 @@ public class Enamy : MonoBehaviour {
             {
                 rb2d.gravityScale = oldGravityScale;
             }
-            
 
-            transform.Translate(Vector2.right *- heading*2 * Time.deltaTime);
+
+            transform.Translate(Vector2.right * -heading * 2 * Time.deltaTime);
         }
-       
+
 
 
     }
 
     IEnumerator Attack()
     {
-        if (Mathf.Abs( distanceFromHome )<= maxDistanceFromHome)
+        if (Mathf.Abs(distanceFromHome) <= maxDistanceFromHome)
         {
             if (heading.sqrMagnitude < maxRange * maxRange)
             {
@@ -102,8 +107,8 @@ public class Enamy : MonoBehaviour {
                     if (isGrounded)
                     {
                         isCourotinePlay = true;
-                           //Debug.Log("Dziala");
-                           canAttack = false;
+                        //Debug.Log("Dziala");
+                        canAttack = false;
                         yield return new WaitForSeconds(attackRate);
 
                         rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 17f);
@@ -115,21 +120,15 @@ public class Enamy : MonoBehaviour {
                 }
             }
         }
-        
-    }
-    [System.Serializable]
-    public class EnemyStats                                    // ZYCIE Przeciwnika
-    {
-        public int maxHealth = 100;
-        public int Health;
+
     }
 
-    public EnemyStats enemyStats = new EnemyStats();
+
 
     void OnDrawGizmos()
     {
 
-        if (player != null )
+        if (player != null)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, player.position);

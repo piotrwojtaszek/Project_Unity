@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMaster : MonoBehaviour {
+public class GameMaster : MonoBehaviour
+{
 
     // TO DO -> gdy gracz doznaje obrazen zadziala na niego slila (bo sie blokuje pod skoczkiem :( )
 
@@ -14,7 +15,8 @@ public class GameMaster : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         if (gm == null)
         {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -49,14 +51,14 @@ public class GameMaster : MonoBehaviour {
     public static void ColorOnDamage(Player go)
     {
 
-            gm.coroutine = gm.ColorOnDamageCo(go);
-            gm.StartCoroutine(gm.coroutine);
+        gm.coroutine = gm.ColorOnDamageCo(go);
+        gm.StartCoroutine(gm.coroutine);
 
     }
 
     IEnumerator ColorOnDamageCo(Player go)
     {
-        
+
         Renderer render = go.GetComponent<Renderer>();
         try
         {
@@ -78,15 +80,15 @@ public class GameMaster : MonoBehaviour {
 
     }
 
-    public static void HurtPlayer(Collider2D collider,int damage)           // po co za kazdym razem to pisac skoro mozna zrobic z tego metode :) 
+    public static void HurtPlayer(Collider2D collider, int damage)           // po co za kazdym razem to pisac skoro mozna zrobic z tego metode :) 
     {
         if (collider.tag == "Player")
         {
             Player player = collider.GetComponent<Player>();
             Debug.Log(player.playerStats.Health);
             player.playerStats.Health -= damage;
-            gm.coroutine = gm.ColorOnDamageCo(player);
-            gm.StartCoroutine(gm.coroutine);
+            Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
+            rb2d.AddForce(new Vector2(40f, 40f));
 
         }
     }
@@ -99,5 +101,5 @@ public class GameMaster : MonoBehaviour {
         collider.enabled = true;
     }
 
-    
+
 }

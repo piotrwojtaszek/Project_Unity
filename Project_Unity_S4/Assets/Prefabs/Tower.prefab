@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114290974077851828}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,3 +100,4 @@ MonoBehaviour:
     type: 2}
   speedOfMissle: 35
   maxRange: 17.55
+  enemyStats: {fileID: 0}

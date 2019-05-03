@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnamyHealthBar : MonoBehaviour {
+public class EnamyHealthBar : MonoBehaviour
+{
     float maxHealth, Health;
-    Enamy enamy;
 
-	void Update () {
-        enamy = gameObject.GetComponentInParent(typeof(Enamy)) as Enamy;
-        Health = enamy.enemyStats.Health;
-        maxHealth = enamy.enemyStats.maxHealth;
-        Debug.Log(Health);
+    EnemyStats enemyStats;
+
+    void Update()
+    {
+        enemyStats = gameObject.GetComponentInParent(typeof(EnemyStats)) as EnemyStats;
+
+        Health = enemyStats.Health;
+        maxHealth = enemyStats.maxHealth;
         SetSize(Health, maxHealth);
-	}
+    }
 
     void SetSize(float sizeNormalized, float max)
     {
