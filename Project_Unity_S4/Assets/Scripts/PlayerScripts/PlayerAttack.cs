@@ -10,12 +10,12 @@ public class PlayerAttack : MonoBehaviour
     Collider2D[] collider;
     public float fireRate;
     private bool isCorutinePlay;
-
+    public int damage;
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+ 
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-        col.GetComponent<EnemyStats>().Health -= 20;
+        col.GetComponent<EnemyStats>().Health -= damage;
         Debug.Log(col.GetComponent<EnemyStats>().Health);
     }
 

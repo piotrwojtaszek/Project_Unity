@@ -9,7 +9,7 @@ public class ShootingTower : MonoBehaviour
     public GameObject misslePrefab;
     public float speedOfMissle;
     bool canShoot = true;
-    private Transform player;
+    public Transform player;
     Vector2 heading;
     float distance;
     public float maxRange;
@@ -25,6 +25,10 @@ public class ShootingTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(enemyStats.Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         heading = transform.position - player.position;
         distance = heading.magnitude;
@@ -33,10 +37,7 @@ public class ShootingTower : MonoBehaviour
         StartCoroutine("Shoot");
 
 
-        if (enemyStats.Health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        
 
     }
 

@@ -440,10 +440,10 @@ GameObject:
   - component: {fileID: 1199292743}
   - component: {fileID: 1199292742}
   - component: {fileID: 1199292741}
-  - component: {fileID: 1199292740}
   - component: {fileID: 1199292739}
-  - component: {fileID: 1199292738}
   - component: {fileID: 1199292744}
+  - component: {fileID: 1199292738}
+  - component: {fileID: 1199292740}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -472,9 +472,7 @@ MonoBehaviour:
   homePosition: {fileID: 423359590}
   maxDistanceFromHome: 18
   returnSpeed: 9
-  enemyStats:
-    maxHealth: 300
-    Health: 0
+  enemyStats: {fileID: 0}
 --- !u!50 &1199292739
 Rigidbody2D:
   serializedVersion: 4
@@ -495,31 +493,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1199292740
-BoxCollider2D:
+--- !u!114 &1199292740
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1199292737}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a405eed061d002b4ba474865a2d0768d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 300
+  Health: 0
 --- !u!23 &1199292741
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -603,7 +589,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4575957874300856, guid: 090d31e6bce16ce4195508a91a855503, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.694382
+      value: -9.25
       objectReference: {fileID: 0}
     - target: {fileID: 4575957874300856, guid: 090d31e6bce16ce4195508a91a855503, type: 2}
       propertyPath: m_LocalPosition.y
