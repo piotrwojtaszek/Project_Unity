@@ -106,7 +106,7 @@ public class Enamy : MonoBehaviour {
                            canAttack = false;
                         yield return new WaitForSeconds(attackRate);
 
-                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 18f);
+                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 17f);
 
 
                         isCourotinePlay = false;

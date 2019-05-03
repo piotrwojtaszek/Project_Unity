@@ -85,9 +85,18 @@ public class GameMaster : MonoBehaviour {
             Player player = collider.GetComponent<Player>();
             Debug.Log(player.playerStats.Health);
             player.playerStats.Health -= damage;
-            
+            gm.coroutine = gm.ColorOnDamageCo(player);
+            gm.StartCoroutine(gm.coroutine);
 
         }
+    }
+
+    IEnumerator DisableBoxCollider(Player go)
+    {
+        Collider2D collider = go.GetComponent<Collider2D>();
+        collider.enabled = false;
+        yield return new WaitForSeconds(1f);
+        collider.enabled = true;
     }
 
     

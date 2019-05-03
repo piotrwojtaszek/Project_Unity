@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6fb14ded648e042a63fb19039e4bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6
-  fireRate: 2
+  radius: 5
+  fireRate: 0.6
