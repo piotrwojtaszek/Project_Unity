@@ -10,35 +10,55 @@ public class PlayerAttack : MonoBehaviour
     Collider2D[] collider;
     public float fireRate;
     private bool isCorutinePlay;
-    public int damage;
+    public float basicDamage;
+
+    private float damage;
+    public float maxDamage;
+    public float speedOfIncrasingDmg;
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
- 
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        
+
         collider = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (Collider2D col in collider)
         {
             if (col.tag == "Enemy")
             {
-
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonUp("Fire1"))
                 {
                     if (isCorutinePlay == false)
                     {
+                        
                         Attack(col);
                         StartCoroutine("AttackRate");
+                        
                     }
-
-
                 }
             }
+        }
+
+        if (Input.GetButton("Fire1"))
+        {
+
+            damage += Time.deltaTime * speedOfIncrasingDmg;
+            damage = Mathf.Clamp(damage, basicDamage, maxDamage);
+
+        }
+        else
+        {
+            
+            if(damage!=basicDamage)
+                Debug.Log(damage);
+            damage = basicDamage;
         }
     }
 
@@ -48,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-        col.GetComponent<EnemyStats>().Health -= damage;
+        col.GetComponent<EnemyStats>().Health -= (int)damage;
         Debug.Log(col.GetComponent<EnemyStats>().Health);
     }
 

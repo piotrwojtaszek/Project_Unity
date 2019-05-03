@@ -85,7 +85,7 @@ public class GameMaster : MonoBehaviour
         if (collider.tag == "Player")
         {
             Player player = collider.GetComponent<Player>();
-            Debug.Log(player.playerStats.Health);
+            
             player.playerStats.Health -= damage;
             Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
             rb2d.AddForce(new Vector2(40f, 40f));
