@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
     private float damage;
     public float maxDamage;
     public float speedOfIncrasingDmg;
+
+    public bool canShoot;
     // Use this for initialization
     void Start()
     {
@@ -25,40 +27,34 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameMaster.shootingSkill = canShoot;
 
-        
-
-        collider = Physics2D.OverlapCircleAll(transform.position, radius);
-        foreach (Collider2D col in collider)
+        if (GameMaster.shootingSkill)
         {
-            if (col.tag == "Enemy")
+            collider = Physics2D.OverlapCircleAll(transform.position, radius);
+            foreach (Collider2D col in collider)
             {
-                if (Input.GetButtonUp("Fire1"))
+                if (col.tag == "Enemy")
                 {
-                    if (isCorutinePlay == false)
+                    if (Input.GetButtonUp("Fire1"))
                     {
-                        
-                        Attack(col);
-                        StartCoroutine("AttackRate");
-                        
+                        if (isCorutinePlay == false)
+                        {
+
+                            Attack(col);
+                            StartCoroutine("AttackRate");
+
+                        }
                     }
                 }
+
             }
-        }
 
-        if (Input.GetButton("Fire1"))
-        {
-
-            damage += Time.deltaTime * speedOfIncrasingDmg;
-            damage = Mathf.Clamp(damage, basicDamage, maxDamage);
-
+            IncraseDamage();
         }
         else
         {
-            
-            if(damage!=basicDamage)
-                Debug.Log(damage);
-            damage = basicDamage;
+            Debug.Log("You cant shoot");
         }
     }
 
@@ -69,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         col.GetComponent<EnemyStats>().Health -= (int)damage;
-        Debug.Log(col.GetComponent<EnemyStats>().Health);
+        //Debug.Log(col.GetComponent<EnemyStats>().Health);
     }
 
     IEnumerator AttackRate()
@@ -83,9 +79,23 @@ public class PlayerAttack : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
 
+    void IncraseDamage()
+    {
+        if (Input.GetButton("Fire1"))
+        {
 
+            damage += Time.deltaTime * speedOfIncrasingDmg;
+            damage = Mathf.Clamp(damage, basicDamage, maxDamage);
 
+        }
+        else
+        {
 
+            if (damage != basicDamage)
+              //  Debug.Log(damage);
+            damage = basicDamage;
+        }
     }
 }

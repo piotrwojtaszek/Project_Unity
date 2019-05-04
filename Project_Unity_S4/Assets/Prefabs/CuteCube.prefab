@@ -113,3 +113,4 @@ MonoBehaviour:
   basicDamage: 8
   maxDamage: 50
   speedOfIncrasingDmg: 14
+  canShoot: 1

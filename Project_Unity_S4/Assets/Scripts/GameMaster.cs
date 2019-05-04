@@ -12,7 +12,8 @@ public class GameMaster : MonoBehaviour
     public Transform cubePrefab;
     public Transform spawnPoint;
     private IEnumerator coroutine;
-
+    public static bool shootingSkill = true;
+    
 
     // Use this for initialization
     void Start()
