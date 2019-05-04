@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class ChargeEnemy : MonoBehaviour
 {
-
-    Rigidbody2D rb2d;
-    Collider2D[] collider;
     public float radius;
     public float wallCheckRadius;
     public Transform wallCheck;
 
     public bool isWalled;
     public LayerMask whatIsWall;
-    private int facingRight;
+    
     public float acceleration;
     public float maxSpeed;
     public float walkSpeed;
     public Transform attackPointA, attackPointB;
     public static bool playerInRange;
     private bool firstEntrance;
-
-    EnemyStats enemyStats;
+    private int facingRight;
+    private EnemyStats enemyStats;
+    private Rigidbody2D rb2d;
+    private Collider2D[] collider;
     // Use this for initialization
     void Start()
     {

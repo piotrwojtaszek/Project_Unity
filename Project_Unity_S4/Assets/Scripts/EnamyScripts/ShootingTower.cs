@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ShootingTower : MonoBehaviour
 {
+    private bool canShoot = true;
+    private Vector2 heading;
+    private float distance;
 
     public float fireRate = 3f;
     public GameObject misslePrefab;
     public float speedOfMissle;
-    bool canShoot = true;
     public Transform player;
-    Vector2 heading;
-    float distance;
     public float maxRange;
     public EnemyStats enemyStats;
     // Use this for initialization
@@ -35,10 +35,6 @@ public class ShootingTower : MonoBehaviour
 
 
         StartCoroutine("Shoot");
-
-
-        
-
     }
 
     IEnumerator Shoot()
@@ -76,11 +72,6 @@ public class ShootingTower : MonoBehaviour
 
         }
     }
-
-
-
-
-
 
     void OnDrawGizmos()
     {

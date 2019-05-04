@@ -15,10 +15,10 @@ public class Enamy : MonoBehaviour
     public Transform homePosition;
     public float maxDistanceFromHome;
     public float returnSpeed;
+    public EnemyStats enemyStats;
 
 
-
-    Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
     private float distanceFromHome;
     private Transform player;
     private Rigidbody2D playerRb2d;
@@ -28,7 +28,7 @@ public class Enamy : MonoBehaviour
     private bool isCourotinePlay;
     private bool isGrounded;
     private bool canAttack = true;
-    public EnemyStats enemyStats;
+    
 
     // Use this for initialization
     void Start()
@@ -48,21 +48,30 @@ public class Enamy : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
         playerRb2d = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        heading = transform.position - player.position;
-        distance = heading.x;
+        
         isGrounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, groundMask);
 
+        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, maxRange);
+        foreach(Collider2D col in collider)
+        {
+            if(col.tag == "Player")
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+                heading = transform.position - player.position;
+                distance = heading.x;
+
+                if (distanceFromHome < maxDistanceFromHome)
+                {
+                    StartCoroutine("Attack");
+                }
+            }
+        }
 
         Vector2 vectorBeetwenHome = transform.position - homePosition.position;
         distanceFromHome = vectorBeetwenHome.magnitude;
 
-
-        if (distanceFromHome < maxDistanceFromHome)
-        {
-            StartCoroutine("Attack");
-        }
         if (!isCourotinePlay)
         {
 
@@ -71,10 +80,7 @@ public class Enamy : MonoBehaviour
                 if (distanceFromHome >= maxDistanceFromHome / 4)
                     transform.Translate(Vector2.right * -Mathf.Sign(vectorBeetwenHome.x) * returnSpeed * Time.deltaTime);
             }
-
         }
-
-
 
         if (!isGrounded)
         {
@@ -91,9 +97,6 @@ public class Enamy : MonoBehaviour
 
             transform.Translate(Vector2.right * -heading * 2 * Time.deltaTime);
         }
-
-
-
     }
 
     IEnumerator Attack()
@@ -111,8 +114,7 @@ public class Enamy : MonoBehaviour
                         canAttack = false;
                         yield return new WaitForSeconds(attackRate);
 
-                        rb2d.velocity = new Vector2(rb2d.velocity.x + playerRb2d.velocity.x, 17f);
-
+                        rb2d.velocity = new Vector2(rb2d.velocity.x + .5f*playerRb2d.velocity.x, 17f);
 
                         isCourotinePlay = false;
                         canAttack = true;
@@ -120,14 +122,12 @@ public class Enamy : MonoBehaviour
                 }
             }
         }
-
     }
 
 
 
     void OnDrawGizmos()
     {
-
         if (player != null)
         {
             Gizmos.color = Color.blue;
