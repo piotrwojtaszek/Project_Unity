@@ -298,7 +298,7 @@ MonoBehaviour:
   speedForce: 50
   maxSpeed: 10
   jumpForce: {x: 0, y: 500}
-  jumpForceWall: {x: 430, y: 320}
+  jumpForceWall: {x: 380, y: 335}
   facingRight: 0
   isInAir: 0
   groundCheck1: {fileID: 4585690284582958}
@@ -306,6 +306,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  isGrounded: 0
   wallCheck: {fileID: 4171132049539236}
   wallCheckRadius: 0.1
   wallMask:

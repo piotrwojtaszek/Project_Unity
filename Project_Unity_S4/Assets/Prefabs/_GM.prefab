@@ -82,4 +82,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4941864184056200, guid: a622be50449ad0042b9ddf7914a35d58,
     type: 2}
+  cubePrefab: {fileID: 4673955856974436, guid: 9ff727bb472504e4f8ecaca4232b7d47, type: 2}
   spawnPoint: {fileID: 4631745489379196}
