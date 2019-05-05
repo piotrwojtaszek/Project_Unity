@@ -101,6 +101,4 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(1f);
         collider.enabled = true;
     }
-
-
 }

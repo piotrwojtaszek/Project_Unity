@@ -80,8 +80,6 @@ public class ChargeEnemy : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Atakuje");
-
         if (firstEntrance)
         {
             Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -98,8 +96,6 @@ public class ChargeEnemy : MonoBehaviour
 
     void Walk()
     {
-        Debug.Log("Spaceruje");
-
         rb2d.velocity = new Vector2(walkSpeed * facingRight, rb2d.velocity.y);
     }
 

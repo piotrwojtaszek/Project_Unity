@@ -20,24 +20,16 @@ public class CameraFollow : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-
-
-        offset = transform.position + target.position;                          
-
-                                    
+        offset = transform.position + target.position;                                          
     }
 
 
     void FixedUpdate()
     {
-
         if (target == null)                                                     
             return;
 
         Vector3 targetCamPos = target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
-
-        
-
+        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime); 
     }
 }

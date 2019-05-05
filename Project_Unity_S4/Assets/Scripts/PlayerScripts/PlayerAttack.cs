@@ -8,6 +8,10 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D rb2d;
     private float damage;
     private bool isCorutinePlay;
+    private Vector3 oldScale;
+    private float localScaleVariable;
+    private SpriteRenderer spriteRend;
+    private CircleCollider2D rangeCollider;
 
     public float fireRate;
     public float basicDamage;
@@ -19,11 +23,20 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        oldScale = transform.localScale;
+        spriteRend = GetComponent<SpriteRenderer>();
+        rangeCollider = GetComponent<CircleCollider2D>();
+        localScaleVariable = oldScale.x;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //Debug.Log(localScaleVariable);
+        rangeCollider.radius = radius/localScaleVariable;
         GameMaster.shootingSkill = canShoot;
 
         if (GameMaster.shootingSkill)
@@ -51,6 +64,8 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("You cant shoot");
         }
+
+        ChangeColor();
     }
 
     void Attack(Collider2D col)
@@ -64,7 +79,9 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator AttackRate()
     {
         isCorutinePlay = true;
+
         yield return new WaitForSeconds(fireRate);
+
         isCorutinePlay = false;
     }
 
@@ -78,14 +95,71 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
+            localScaleVariable = 0.9f * damage / maxDamage;
+            localScaleVariable = Mathf.Clamp(localScaleVariable, oldScale.x, .8f);
+            transform.localScale = Vector3.one * localScaleVariable;
+
+            if (damage == maxDamage)
+            {
+                //Debug.Log(localScaleVariable);
+            }
             damage += Time.deltaTime * speedOfIncrasingDmg;
             damage = Mathf.Clamp(damage, basicDamage, maxDamage);
         }
         else
         {
-            if (damage != basicDamage)
-              //  Debug.Log(damage);
+            transform.localScale = oldScale;
             damage = basicDamage;
         }
+    }
+
+    private bool enemyInRange;
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            enemyInRange = true;
+            Debug.Log("Przeciwnik");
+        }
+
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            enemyInRange = true;
+            Debug.Log("Przeciwnik");
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            enemyInRange = false;
+        }
+    }
+
+
+
+    void ChangeColor()
+    {
+        if (enemyInRange)
+        {
+            //Debug.Log("czerwony");
+            spriteRend.material.color = Color.blue;
+
+        }
+        else
+        {
+            //Debug.Log("bialy");
+            spriteRend.material.color = Color.white;
+
+        }
+
+
     }
 }
