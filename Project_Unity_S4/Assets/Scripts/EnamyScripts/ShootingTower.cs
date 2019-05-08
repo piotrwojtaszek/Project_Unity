@@ -30,6 +30,7 @@ public class ShootingTower : MonoBehaviour
             Destroy(this.gameObject);
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
         heading = transform.position - player.position;
         distance = heading.magnitude;
 

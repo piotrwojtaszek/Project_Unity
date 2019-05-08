@@ -38,9 +38,11 @@ public class PlayerMissle : MonoBehaviour {
     {
         
         float directionX =  enemy.position.x - transform.position.x;
-        float directionY =  enemy.position.y - transform.position.y + enemy.localScale.y;
-        directionY = Mathf.Clamp(directionY, -1f, 1f);
-        
+        float directionY =  enemy.position.y - transform.position.y + enemy.localScale.y/2;
+        //directionY = Mathf.Clamp(directionY, -1f, 1f);
+
+        ClampValueOver(directionX, 10f);
+        ClampValueOver(directionY, 5f);
         transform.Translate(Vector2.up * directionY * Time.deltaTime * speed);
 
         transform.Translate(Vector2.right * directionX * Time.deltaTime * speed);
@@ -56,4 +58,10 @@ public class PlayerMissle : MonoBehaviour {
         }
     }
 
+    void ClampValueOver(float value, float minValue)
+    {
+        float valueSign = Mathf.Sign(value);
+
+        value = Mathf.Clamp(value, minValue * valueSign, speed * valueSign);
+    }
 }

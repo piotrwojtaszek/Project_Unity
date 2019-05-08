@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-
-    // TO DO -> gdy gracz doznaje obrazen zadziala na niego slila (bo sie blokuje pod skoczkiem :( )
-
     private static GameMaster gm;
     public Transform playerPrefab;
     public Transform cubePrefab;
@@ -88,14 +85,6 @@ public class GameMaster : MonoBehaviour
             Player player = collider.GetComponent<Player>();
             
             player.playerStats.Health -= damage;
-            Rigidbody2D rb2d = collider.GetComponent<Rigidbody2D>();
-            rb2d.AddForce(Vector2.up * 300f);
-            Collider2D playerCollider = collider.GetComponent<Collider2D>();
-            playerCollider.enabled = false;
-            Debug.Log(playerCollider);
-            gm.StartCoroutine("WaitSomeTime");
-            playerCollider.enabled = true;
-
         }
     }
 
@@ -104,11 +93,5 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(.5f);
     }
 
-    IEnumerator DisableBoxCollider(Player go)
-    {
-        Collider2D collider = go.GetComponent<Collider2D>();
-        collider.enabled = false;
-        yield return new WaitForSeconds(1f);
-        collider.enabled = true;
-    }
+    
 }

@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     private Animator animator;
     private PlayerController playerController;
     private int oldHealth;
+    private IEnumerator coroutine2;
+    private Rigidbody2D rb2d;
     // Use this for initialization
     void Start () {
         cuteCube = GameObject.FindGameObjectWithTag("CuteCube");
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour {
         playerStats.Health = playerStats.maxHealth;
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
+        rb2d = GetComponent<Rigidbody2D>();
         oldHealth = playerStats.Health;
 	}
 	
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour {
         if (playerStats.Health < oldHealth)
         {
             GameMaster.ColorOnDamage(this);
+            rb2d.AddForce(Vector2.up * 600f);
         }
         oldHealth = playerStats.Health;
         //###################

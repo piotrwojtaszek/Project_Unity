@@ -97,7 +97,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKey(KeyCode.K))
         {
             localScaleVariable = 0.9f * damage / maxDamage;
-            localScaleVariable = Mathf.Clamp(localScaleVariable, oldScale.x, .8f);
+            localScaleVariable = Mathf.Clamp(localScaleVariable, oldScale.x, .6f);
             transform.localScale = Vector3.one * localScaleVariable;
 
             if (damage == maxDamage)

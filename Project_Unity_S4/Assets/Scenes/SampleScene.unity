@@ -1930,6 +1930,11 @@ Prefab:
       propertyPath: maxDistanceFromHome
       value: 16.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114525151716882172, guid: 968b76f2d12a28b4c909b1d4248f7d9b,
+        type: 2}
+      propertyPath: attackRate
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 968b76f2d12a28b4c909b1d4248f7d9b, type: 2}
   m_IsPrefabAsset: 0
@@ -2093,11 +2098,11 @@ Prefab:
         type: 2}
     - target: {fileID: 4631745489379196, guid: 04f40505259a58747a17f3dd34e17ebc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -124.46
+      value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 4631745489379196, guid: 04f40505259a58747a17f3dd34e17ebc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.6
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04f40505259a58747a17f3dd34e17ebc, type: 2}
