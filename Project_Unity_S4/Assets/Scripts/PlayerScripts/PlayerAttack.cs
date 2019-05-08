@@ -19,6 +19,9 @@ public class PlayerAttack : MonoBehaviour
     public float maxDamage;
     public float speedOfIncrasingDmg;
     public bool canShoot;
+
+    public GameObject misslePrefab;
+    private GameObject obj;
     // Use this for initialization
     void Start()
     {
@@ -34,7 +37,6 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Debug.Log(localScaleVariable);
         rangeCollider.radius = radius/localScaleVariable;
         GameMaster.shootingSkill = canShoot;
@@ -46,11 +48,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (col.tag == "Enemy")
                 {
-                    if (Input.GetButtonUp("Fire1"))
+                    if (Input.GetKeyUp(KeyCode.K))
                     {
                         if (isCorutinePlay == false)
                         {
-
                             Attack(col);
                             StartCoroutine("AttackRate");
 
@@ -62,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            Debug.Log("You cant shoot");
+            //Debug.Log("You cant shoot");
         }
 
         ChangeColor();
@@ -71,8 +72,8 @@ public class PlayerAttack : MonoBehaviour
     void Attack(Collider2D col)
     {
         Debug.DrawLine(transform.position, col.transform.position, Color.red, 0.2f);
-
-        col.GetComponent<EnemyStats>().Health -= (int)damage;
+        RespawnMissle(col);
+        //col.GetComponent<EnemyStats>().Health -= (int)damage;
         //Debug.Log(col.GetComponent<EnemyStats>().Health);
     }
 
@@ -93,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
 
     void IncraseDamage()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetKey(KeyCode.K))
         {
             localScaleVariable = 0.9f * damage / maxDamage;
             localScaleVariable = Mathf.Clamp(localScaleVariable, oldScale.x, .8f);
@@ -120,9 +121,8 @@ public class PlayerAttack : MonoBehaviour
         if (col.tag == "Enemy")
         {
             enemyInRange = true;
-            Debug.Log("Przeciwnik");
+           // Debug.Log("Przeciwnik");
         }
-
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -130,9 +130,8 @@ public class PlayerAttack : MonoBehaviour
         if (col.tag == "Enemy")
         {
             enemyInRange = true;
-            Debug.Log("Przeciwnik");
+            //Debug.Log("Przeciwnik");
         }
-
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -151,7 +150,6 @@ public class PlayerAttack : MonoBehaviour
         {
             //Debug.Log("czerwony");
             spriteRend.material.color = Color.blue;
-
         }
         else
         {
@@ -159,7 +157,14 @@ public class PlayerAttack : MonoBehaviour
             spriteRend.material.color = Color.white;
 
         }
+    }
 
 
+    void RespawnMissle(Collider2D col)
+    {
+        obj = (GameObject)Instantiate(misslePrefab, transform.position, transform.rotation);
+        obj.GetComponent<PlayerMissle>().enemy = col.transform;
+        obj.GetComponent<PlayerMissle>().damage = (int)damage;
+        obj.transform.localScale = Vector3.one * localScaleVariable;
     }
 }

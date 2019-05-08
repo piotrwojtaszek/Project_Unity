@@ -88,10 +88,20 @@ public class GameMaster : MonoBehaviour
             Player player = collider.GetComponent<Player>();
             
             player.playerStats.Health -= damage;
-            Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
-            rb2d.AddForce(new Vector2(40f, 40f));
+            Rigidbody2D rb2d = collider.GetComponent<Rigidbody2D>();
+            rb2d.AddForce(Vector2.up * 300f);
+            Collider2D playerCollider = collider.GetComponent<Collider2D>();
+            playerCollider.enabled = false;
+            Debug.Log(playerCollider);
+            gm.StartCoroutine("WaitSomeTime");
+            playerCollider.enabled = true;
 
         }
+    }
+
+    IEnumerator WaitSomeTime()
+    {
+        yield return new WaitForSeconds(.5f);
     }
 
     IEnumerator DisableBoxCollider(Player go)

@@ -765,7 +765,7 @@ Prefab:
     - target: {fileID: 114467470349309330, guid: a4606b586836f9d4e87d387de7450ce7,
         type: 2}
       propertyPath: acceleration
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 114467470349309330, guid: a4606b586836f9d4e87d387de7450ce7,
         type: 2}
@@ -776,6 +776,15 @@ Prefab:
         type: 2}
       propertyPath: maxHealth
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436862415460162, guid: a4606b586836f9d4e87d387de7450ce7, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50163703856209190, guid: a4606b586836f9d4e87d387de7450ce7,
+        type: 2}
+      propertyPath: m_Mass
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4606b586836f9d4e87d387de7450ce7, type: 2}
