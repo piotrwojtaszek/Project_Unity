@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject misslePrefab;
     private GameObject obj;
+    private PlayersFriend playersFriend;
     // Use this for initialization
     void Start()
     {
@@ -30,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
         rangeCollider = GetComponent<CircleCollider2D>();
         localScaleVariable = oldScale.x;
-
+        playersFriend = GetComponent<PlayersFriend>();
 
     }
 
@@ -112,6 +113,9 @@ public class PlayerAttack : MonoBehaviour
             transform.localScale = oldScale;
             damage = basicDamage;
         }
+
+        playersFriend.IncrasingRotate(damage);
+        
     }
 
     private bool enemyInRange;
@@ -162,9 +166,12 @@ public class PlayerAttack : MonoBehaviour
 
     void RespawnMissle(Collider2D col)
     {
+        
+        transform.rotation = new Quaternion(0,0,0,1);
         obj = (GameObject)Instantiate(misslePrefab, transform.position, transform.rotation);
         obj.GetComponent<PlayerMissle>().enemy = col.transform;
         obj.GetComponent<PlayerMissle>().damage = (int)damage;
         obj.transform.localScale = Vector3.one * localScaleVariable;
+       
     }
 }

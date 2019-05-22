@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMissle : MonoBehaviour {
 
-    private Rigidbody2D rb2d;
+    //private Rigidbody2D rb2d;
     public float speed;
     [HideInInspector]
     public Transform enemy;
@@ -13,7 +13,7 @@ public class PlayerMissle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Destroy(this.gameObject, 3f);
-        rb2d = GetComponent<Rigidbody2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
         
     }
 	
