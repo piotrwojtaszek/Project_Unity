@@ -230,8 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76853c390e17f1a42aad83d006aeaf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  dashForce: 500
+  arrowPrefab: {fileID: 1634616520958110, guid: 2f23ac8a224e1dd4b9387722e0a50a27,
+    type: 2}
+  radius: 3.2
+  dashForce: 1400
   missleSpeed: 25
 --- !u!114 &114830938382765362
 MonoBehaviour:

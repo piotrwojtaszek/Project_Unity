@@ -27,7 +27,7 @@ public class ThrowinMissle : MonoBehaviour {
         coroutine = true;
         GameObject obj = (GameObject)Instantiate(misslePrefab, transform.position, transform.rotation);
         Rigidbody2D rb2dObj = obj.GetComponent<Rigidbody2D>();
-        rb2dObj.velocity = Vector2.right * missleSpeed;
+        rb2dObj.velocity = new Vector2(1f,1f) * missleSpeed;
         yield return new WaitForSeconds(3f);
         coroutine = false;
     }

@@ -17,7 +17,6 @@ public class ShootingTower : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //transform.eulerAngles = new Vector3(0, 0, 10);
         enemyStats = GetComponent<EnemyStats>();
         enemyStats.Health = enemyStats.maxHealth;
     }
@@ -29,11 +28,11 @@ public class ShootingTower : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         heading = transform.position - player.position;
         distance = heading.magnitude;
-
 
         StartCoroutine("Shoot");
     }

@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     public bool canJump;                                // bedzie potrzebne
     float timeOfWall;
     // Use this for initialization
-    float yVelocity = 0.0f;
+    //float yVelocity = 0.0f;
     void OnEnable()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (isInAir && moveInput==0)                                                                // spowalnianie gracza w locie
+        /*if (isInAir && moveInput==0)                                                                // spowalnianie gracza w locie
         {
             float newVelocity = Mathf.SmoothDamp(rb2d.velocity.x, 0f, ref yVelocity, 0.3f);
             rb2d.velocity = new Vector2(newVelocity, rb2d.velocity.y);
-        }
+        }*/
 
 
         if(!isWalled && !isGrounded)                                                
