@@ -53,5 +53,11 @@ public class PauseMenu : MonoBehaviour {
         gameIsPaused = false;
         SceneManager.LoadScene(0);
     }
+    public void SaveButton()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Save();
+        
+        Debug.Log("działa");
+    }
 
 }

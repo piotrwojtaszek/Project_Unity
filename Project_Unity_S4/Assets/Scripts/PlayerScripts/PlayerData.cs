@@ -7,12 +7,4 @@ public class PlayerData : MonoBehaviour {
     public Vector3 location;
     public int scene;
     public int health;
-
-    public PlayerData()
-    {
-        health = 100;
-    }
-
-
-
 }

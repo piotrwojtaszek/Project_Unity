@@ -10,15 +10,21 @@ public class Player : MonoBehaviour {
     private int oldHealth;
     private IEnumerator coroutine2;
     private Rigidbody2D rb2d;
+    PlayerData playerData;
     // Use this for initialization
     void Start () {
         cuteCube = GameObject.FindGameObjectWithTag("CuteCube");
 
-        playerStats.Health = playerStats.maxHealth;
+        playerData = PlayerPresistance.LoadData();
+
+        playerStats.Health = playerData.health;
+        oldHealth = playerStats.Health;
+
+
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
         rb2d = GetComponent<Rigidbody2D>();
-        oldHealth = playerStats.Health;
+        
 	}
 	
 	// Update is called once per frame
@@ -64,4 +70,9 @@ public class Player : MonoBehaviour {
 
 
     public PlayerStats playerStats = new PlayerStats();
+
+    public void Save()
+    {
+        PlayerPresistance.SaveData(this);
+    }
 }

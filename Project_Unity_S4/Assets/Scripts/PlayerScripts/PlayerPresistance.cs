@@ -7,14 +7,25 @@ public static class PlayerPresistance{
 
     public static void SaveData(Player player)
     {
-        PlayerPrefs.SetFloat("x", player.transform.position.x);
-        PlayerPrefs.SetFloat("y", player.transform.position.y);
-        PlayerPrefs.SetFloat("z", player.transform.position.z);
+        GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+
+        PlayerPrefs.SetFloat("x", gm.spawnPoint.transform.position.x);
+        PlayerPrefs.SetFloat("y", gm.spawnPoint.transform.position.y);
+        PlayerPrefs.SetFloat("z", gm.spawnPoint.transform.position.z);
         PlayerPrefs.SetInt("scene", SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.SetInt("health", player.playerStats.Health);
     }
 
-    public static PlayerData LoadScene()
+    public static void SaveData()
+    {
+        PlayerPrefs.SetFloat("x", 0);
+        PlayerPrefs.SetFloat("y", 0);
+        PlayerPrefs.SetFloat("z", 0);
+        PlayerPrefs.SetInt("scene", SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerPrefs.SetInt("health", 100);
+    }
+
+    public static PlayerData LoadData()
     {
         float x = PlayerPrefs.GetFloat("x");
         float y = PlayerPrefs.GetFloat("y");

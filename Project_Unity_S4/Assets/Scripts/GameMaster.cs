@@ -19,6 +19,7 @@ public class GameMaster : MonoBehaviour
         {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
+        
         RespawnPlayer();
     }
 
@@ -40,8 +41,8 @@ public class GameMaster : MonoBehaviour
     public IEnumerator RespawnPlayerCo()
     {
         yield return new WaitForSeconds(0f);
-        Transform player = (Transform)Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        Transform cube = (Transform)Instantiate(cubePrefab, spawnPoint.position, spawnPoint.rotation);
+        Transform player = (Transform)Instantiate(playerPrefab, PlayerPresistance.LoadData().location, spawnPoint.rotation);
+        Transform cube = (Transform)Instantiate(cubePrefab, PlayerPresistance.LoadData().location, spawnPoint.rotation);
         CameraFollow cameraFolow = Camera.main.GetComponent<CameraFollow>();
         cameraFolow.target = player;
     }

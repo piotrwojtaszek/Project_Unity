@@ -5,9 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MainManu : MonoBehaviour {
 
+    PlayerData playerData;
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerPresistance.SaveData();
+    }
+
+    public void Continue()
+    {
+        playerData = PlayerPresistance.LoadData();
+        SceneManager.LoadScene(playerData.scene);
+    }
+
+    public void Reset()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public void QuitGame()
