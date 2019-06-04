@@ -2008,7 +2008,7 @@ Prefab:
     - target: {fileID: 212887019477120562, guid: d70b50481ff5c634c9649849431a50a2,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
       propertyPath: m_LocalScale.y
@@ -2618,6 +2618,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1578405214
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 95.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 31.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.071814455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.99741805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_RootOrder
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332109907795070, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_Name
+      value: PolkaSkalna (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212887019477120562, guid: d70b50481ff5c634c9649849431a50a2,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1656342239
+      objectReference: {fileID: 0}
+    - target: {fileID: 212887019477120562, guid: d70b50481ff5c634c9649849431a50a2,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 8.236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 10.338241
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1606844593
 Prefab:
   m_ObjectHideFlags: 0
@@ -3294,4 +3358,68 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5db151cc59c391439eb0926bb5383ea, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &2057688252
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -29.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_RootOrder
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332109907795070, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_Name
+      value: PolkaSkalna (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212887019477120562, guid: d70b50481ff5c634c9649849431a50a2,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1656342239
+      objectReference: {fileID: 0}
+    - target: {fileID: 212887019477120562, guid: d70b50481ff5c634c9649849431a50a2,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017354249911164, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 13.236758
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332109907795070, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d70b50481ff5c634c9649849431a50a2, type: 2}
   m_IsPrefabAsset: 0
