@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour {
     public static bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
-	
+    PlayerData playerData;
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -53,10 +53,12 @@ public class PauseMenu : MonoBehaviour {
         gameIsPaused = false;
         SceneManager.LoadScene(0);
     }
-    public void SaveButton()
+    public void LoadButton()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Save();
-        
+        playerData = PlayerPresistance.LoadData();
+        SceneManager.LoadScene(playerData.scene);
+        Time.timeScale = 1f;
+        gameIsPaused = false;
         Debug.Log("działa");
     }
 
