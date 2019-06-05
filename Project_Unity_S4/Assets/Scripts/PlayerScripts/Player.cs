@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
         if (playerStats.Health <= 0)
         {
             GameMaster.KillPlayer(this, cuteCube);
+            Destroy(cuteCube);
         }
 
         //genialna funkcja ktora w przypadku otrzymania JAKICHKOLWIEK obrazen wywołuje metode z GameMastera

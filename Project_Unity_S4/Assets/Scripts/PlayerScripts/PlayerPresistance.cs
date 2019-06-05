@@ -39,7 +39,7 @@ public static class PlayerPresistance{
             scene = _scene,
             health = _health
         };
-
+        
         return playerData;
     }
 }
