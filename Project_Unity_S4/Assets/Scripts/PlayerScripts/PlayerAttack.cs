@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (col.tag == "Enemy")
                 {
-                    if (Input.GetKeyUp(KeyCode.K))
+                    if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         if (isCorutinePlay == false)
                         {
@@ -95,7 +95,7 @@ public class PlayerAttack : MonoBehaviour
 
     void IncraseDamage()
     {
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             localScaleVariable = 0.9f * damage / maxDamage;
             localScaleVariable = Mathf.Clamp(localScaleVariable, oldScale.x, .6f);
@@ -153,7 +153,7 @@ public class PlayerAttack : MonoBehaviour
         if (enemyInRange)
         {
             //Debug.Log("czerwony");
-            spriteRend.material.color = Color.blue;
+            spriteRend.material.color = Color.red;
         }
         else
         {

@@ -230,9 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76853c390e17f1a42aad83d006aeaf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 1634616520958110, guid: 2f23ac8a224e1dd4b9387722e0a50a27,
+  arrowPrefab: {fileID: 1523201707596474, guid: 4d31c024a81479e4e8aa3349421d2ff9,
     type: 2}
-  radius: 3.2
+  radius: 4
   dashForce: 1400
   missleSpeed: 25
 --- !u!114 &114830938382765362
@@ -282,7 +282,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1793560287
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

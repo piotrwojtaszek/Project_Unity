@@ -6,7 +6,8 @@ public class ThrowinMissle : MonoBehaviour {
     public GameObject misslePrefab;
     private bool coroutine;
     public float missleSpeed;
-
+    public Vector2 speed;
+    public float attackRate;
 	// Use this for initialization
 	void Start () {
         
@@ -27,8 +28,8 @@ public class ThrowinMissle : MonoBehaviour {
         coroutine = true;
         GameObject obj = (GameObject)Instantiate(misslePrefab, transform.position, transform.rotation);
         Rigidbody2D rb2dObj = obj.GetComponent<Rigidbody2D>();
-        rb2dObj.velocity = new Vector2(1f,1f) * missleSpeed;
-        yield return new WaitForSeconds(3f);
+        rb2dObj.velocity = speed * missleSpeed;
+        yield return new WaitForSeconds(attackRate);
         coroutine = false;
     }
 }

@@ -33,6 +33,13 @@ public static class PlayerPresistance{
         int _scene = PlayerPrefs.GetInt("scene");
         int _health = PlayerPrefs.GetInt("health");
 
+        if(SceneManager.GetActiveScene().buildIndex != _scene && SceneManager.GetActiveScene().buildIndex != 0)// przydaje sie do tesowania sceny, bo tak to spawnuje gracza w miejscu z innej sceny
+        {
+            GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+            x = gm.spawnPoint.transform.position.x;
+            y = gm.spawnPoint.transform.position.y;
+            z = gm.spawnPoint.transform.position.z;
+        }
         PlayerData playerData = new PlayerData()
         {
             location = new Vector3(x, y, z),

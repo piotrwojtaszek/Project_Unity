@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour {
         {
             //Debug.Log(player.playerStats.Health);
             fillAmount = ((float)player.playerStats.Health / (float)player.playerStats.maxHealth);
-            image.fillAmount = fillAmount;
+            image.transform.localScale =new Vector3(fillAmount, image.transform.localScale.y, image.transform.localScale.z);
         }
         
     }
