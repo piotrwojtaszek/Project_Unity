@@ -6,8 +6,8 @@ Co zrobić żeby zagrać?
 3. Uruchom plik .exe 
 
 Instrukjca:
-a. Poruszanie - WSAD
-b. Skok - Spacja
-c. Strzał - lewy przycisk myszy(im dłużej tym większe obrażenia)
-d. Na drugiej mapie można użyć białych kulek jako katapulty, należy podskoczyć i 
+1. Poruszanie - WSAD
+2. Skok - Spacja
+3. Strzał - lewy przycisk myszy(im dłużej tym większe obrażenia)
+4. Na drugiej mapie można użyć białych kulek jako katapulty, należy podskoczyć i 
 w locie przytrzymać Spacje i wybrać kierunek lotu.
